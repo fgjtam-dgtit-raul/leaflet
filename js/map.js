@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
       onEachFeature: function (feature, layer) {
         layer.setStyle(grayStyle);
       }
-    }).addTo(map).bringToBack();
+    }).addTo(grayLayer).bringToBack();
     
     // Define the custom pin icon
     var customIcon = L.icon({
