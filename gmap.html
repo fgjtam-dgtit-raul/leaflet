@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map with GeoJSON Layer using GMaps.js</title>
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://maps.google.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js"></script>
+  <script>
+    // Initialize the map
+    var map = new GMaps({
+      div: '#map',
+      lat: 25.224,
+      lng: -98.021,
+      zoom: 8
+    });
+
+    // Add the tile layer (Google Maps)
+    map.addTileLayer({
+      name: 'TileLayer',
+      tileUrl: 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+      attribution: 'Map data &copy; <a href="https://www.google.com/maps">Google Maps</a> contributors'
+    });
+
+    // Define the styling for the Tamaulipas layer
+    var tamaulipasStyle = {
+      fillColor: '#1e6492',
+      fillOpacity: 0.1,
+      strokeColor: '#1e6492',
+      strokeOpacity: 1,
+      strokeWeight: 1
+    };
+
+    // Create a GeoJSON layer for Tamaulipas
+    map.loadFromGeoJSON({
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [-99.7304105758667, 27.679841759118677],
+              [-99.92752075195312, 27.55393814624108],
+              [-99.7304105758667, 27.679841759118677]
+            ]
+          ]
+        }
+      }]
+    }, 'polygon', tamaulipasStyle);
+  </script>
+</body>
+</html>
